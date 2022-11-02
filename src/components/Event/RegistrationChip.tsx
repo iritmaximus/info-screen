@@ -1,5 +1,5 @@
 import { Chip } from "@mui/material";
-import TickingChip from "components/TickingChip";
+import TickingChip from "../TickingChip";
 import {
   isValid,
   isAfter,
@@ -16,7 +16,7 @@ import PropTypes from "prop-types";
 const noteEmoji = "📝";
 const countdownHours = 2;
 
-const getRegistrationState = (startDate, endDate, now) => {
+const getRegistrationState = (startDate: Date, endDate: Date, now: Date) => {
   const validStartDate = isValid(startDate);
   const validEndDate = isValid(endDate);
 
@@ -54,7 +54,13 @@ const getRegistrationState = (startDate, endDate, now) => {
   return "unknown";
 };
 
-const RegistrationChip = ({ startDate, endDate, now }) => {
+interface RegistrationProps {
+  startDate: Date;
+  endDate: Date;
+  now: Date;
+}
+
+const RegistrationChip = ({ startDate, endDate, now }: RegistrationProps) => {
   // 'none' | 'open' | 'future' | 'countdown' | 'closing'
   const [registrationState, setRegistrationState] = useState(
     getRegistrationState(startDate, endDate, now)
@@ -131,6 +137,6 @@ RegistrationChip.propTypes = {
   startDate: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
   now: PropTypes.instanceOf(Date)
-}
+};
 
 export default RegistrationChip;
