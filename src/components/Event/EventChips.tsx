@@ -3,8 +3,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import DateChip from "./DateChip";
 import RegistrationChip from "./RegistrationChip";
+import { IEvent, EventPropWrapper } from "../EventList";
 
-const EventChips = ({ event }) => {
+const EventChips = ({ event }: EventPropWrapper) => {
   const { starts, registration_starts, registration_ends } = event;
   const now = new Date();
   const startDate = new Date(starts);

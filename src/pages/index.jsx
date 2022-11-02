@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import {
   fetchSciencePercentage,
   fetchTotalPercentage
-} from "services/repcoVoteService";
-import { fetchGroupedEvents } from "services/tkoalyEventService";
+} from "../services/repcoVoteService";
+import { fetchGroupedEvents } from "../services/tkoalyEventService";
 import {
   fetchChecmicumFoodlist,
   fetchExactumFoodlist
-} from "services/unicafeFoodListService";
+} from "../services/unicafeFoodListService";
 import { SWRConfig } from "swr/_internal";
 import App from "../components/App";
 

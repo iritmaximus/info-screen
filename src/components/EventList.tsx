@@ -4,6 +4,33 @@ import useSWR from "swr";
 import { red } from "@mui/material/colors";
 import Event from "./Event/Event";
 
+// TODO "x?: type" the optional ones
+export interface IEvent {
+  id: number;
+  name: string;
+  user_id: number;
+  price: string;
+  created: string;
+  starts: string;
+  registration_starts: string | null;
+  registration_ends: string | null;
+  cancellation_starts: string | null;
+  location: string;
+  category: string;
+  description: string;
+  deleted: number;
+}
+
+export interface EventPropWrapper {
+  event: IEvent;
+}
+
+interface EventsObj {
+  "This week": IEvent[] | undefined;
+  "Next week": IEvent[] | undefined;
+  Later: IEvent[] | undefined;
+}
+
 const subtitleHeadingStyle = {
   fontSize: "1.5rem",
   fontWeight: "700"
@@ -16,12 +43,13 @@ const errorHeadingStyle = {
   marginBottom: "1rem"
 };
 
-const fetcher = url => fetch(url).then(res => res.json());
+const fetcher = (url: string) => fetch(url).then(res => res.json());
 
-const EventList = () => {
-  const { data: events, error } = useSWR("/api/events/upcoming", fetcher, {
+const EventList = (): JSX.Element => {
+  const { data, error } = useSWR("/api/events/upcoming", fetcher, {
     refreshInterval: 5 * 60 * 1000 // 5 minutes
   });
+  const events: EventsObj = data;
 
   return (
     <List dense={true}>
@@ -31,7 +59,7 @@ const EventList = () => {
         </Typography>
       )}
       {events &&
-        Object.entries(events).map(([subtitle, events]) => (
+        Object.entries(events).map(([subtitle, events]: [string, IEvent[]]) => (
           <React.Fragment key={subtitle}>
             <Typography variant="h3" sx={subtitleHeadingStyle}>
               {subtitle}

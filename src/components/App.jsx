@@ -1,10 +1,10 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
 
-import EventList from "./EventList.jsx";
-import FoodList from "./FoodList.jsx";
-import Logo from "./Logo.jsx";
-import VotePercentage from "./VotePercentage.jsx";
+import EventList from "./EventList";
+import FoodList from "./FoodList";
+import Logo from "./Logo";
+import VotePercentage from "./VotePercentage";
 
 export default function App() {
   return (

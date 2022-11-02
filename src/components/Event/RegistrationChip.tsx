@@ -21,7 +21,7 @@ const getRegistrationState = (startDate: Date, endDate: Date, now: Date) => {
   const validEndDate = isValid(endDate);
 
   // An event cannot have registration if it does not start at some point
-  if (!validStartDate) return "none";
+  if (!validStartDate || startDate === null) return "none";
 
   // If the event does not have an end date and we're past start date, registration is open
   if (!validEndDate && isAfter(now, startDate)) return "open";
