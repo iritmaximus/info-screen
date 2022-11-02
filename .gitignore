@@ -2,5 +2,7 @@ node_modules
 .env
 static/js/bundle.js
 
+build
+
 # Next.js
 .next
